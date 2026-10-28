@@ -25,6 +25,8 @@ const DOCUMENT = {
 const CLIENTS = [
   { email: "alice@example.com", firstName: "Alice", lastName: "Example" },
   { email: "bob@example.com", firstName: "Bob", lastName: "Example" },
+  // Never buys: lets `check:isolation` prove storage refuses an unentitled client.
+  { email: "carol@example.com", firstName: "Carol", lastName: "Example" },
 ];
 
 const ZOHO_OPEN_STAGE = process.env.ZOHO_SEED_STAGE || "Qualification";

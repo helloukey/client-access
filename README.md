@@ -88,7 +88,7 @@ Copy the `whsec_...` secret it prints into `STRIPE_WEBHOOK_SECRET`, and your tes
 
 ```bash
 # set ADMIN_TOKEN (openssl rand -hex 32) and SEED_CLIENT_PASSWORD in .env.local first
-npm run db:seed     # Stripe price, sample PDF, alice@/bob@example.com, a Zoho Contact + Deal for each
+npm run db:seed     # Stripe price, sample PDF, alice@/bob@/carol@example.com, a Zoho Contact + Deal for each
 npm run dev         # http://localhost:3000
 ```
 
@@ -140,6 +140,8 @@ npm run test:db           # runs the real migration in an in-memory Postgres (PG
                           # fulfilment, idempotency, mismatches, the CRM claim, and RLS/storage isolation
 npm run check:isolation   # against your live Supabase: signs in as bob with the anon key and tries to read
                           # alice's purchases, CRM row and document, grant itself access, and call the server functions
+npm run check:isolation -- carol@example.com alice@example.com
+                          # carol never buys, so this also proves Storage refuses to sign a URL for the PDF
 ```
 
 ## Design decisions and tradeoffs
